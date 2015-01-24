@@ -14,7 +14,7 @@ import android.util.Log;
 public class SoapService {
 
 	public String getSoapStringResult(String methodName,
-			TreeMap<String, Object> Args)  throws Exception{
+			TreeMap<String, String> Args)  throws Exception{
 
 		SoapObject obj = getSoapObject(methodName, Args);
 		if (obj == null)
@@ -25,7 +25,7 @@ public class SoapService {
 	}	
 	
 	private SoapObject getSoapObject(String methodName,
-			TreeMap<String, Object> Args) throws Exception {
+			TreeMap<String, String> Args) throws Exception {
 
 		String nameSpace = "http://truly.com.cn/ic";		
 		// EndPoint
@@ -36,26 +36,26 @@ public class SoapService {
 		// 指定WebService的命名空间和调用的方法名
 		SoapObject rpc = new SoapObject(nameSpace, methodName);
 
-		// 设置需调用WebService接口需要传入的参数
+		// 设置需调用WebService接口需要传入的参数,将参数值AES加密
 		Iterator<String> iterator = Args.keySet().iterator();
 		while (iterator.hasNext()) {
 			Object key = iterator.next();
-			rpc.addProperty(key.toString(), Args.get(key));
+			rpc.addProperty(key.toString(), MyUtils.AES.encrypt(Args.get(key)));
 		}
 		
 		// 生成调用WebService方法的SOAP请求信息,并指定SOAP的版本
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);
-
+		
 		envelope.bodyOut = rpc;
 		// 设置是否调用的是dotNet开发的WebService
 		envelope.dotNet = true;
 		// 等价于envelope.bodyOut = rpc;
-		//envelope.setOutputSoapObject(rpc);
-
+		//envelope.setOutputSoapObject(rpc);	
+		
 		HttpTransportSE transport = new HttpTransportSE(endPoint);
 		try {
-			// 调用WebService
+			// 调用WebService			
 			transport.call(soapAction, envelope);
 		} catch (Exception e) {
 			e.printStackTrace();

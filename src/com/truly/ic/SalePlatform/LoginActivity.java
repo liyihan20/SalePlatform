@@ -1,5 +1,6 @@
 package com.truly.ic.SalePlatform;
 
+import java.util.Set;
 import java.util.TreeMap;
 
 import android.animation.Animator;
@@ -20,6 +21,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 import com.alibaba.fastjson.JSON;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -227,7 +230,7 @@ public class LoginActivity extends Activity {
 		protected SimpleResultModel doInBackground(Void... params) {
 
 			SoapService soap = new SoapService();
-			TreeMap<String, Object> filter = new TreeMap<String, Object>();
+			TreeMap<String, String> filter = new TreeMap<String, String>();
 			filter.put("accountset", mAccountset);
 			filter.put("md5Password", MyUtils.stringToMyMD5(mPassword));
 			filter.put("userName", mUsername);
@@ -247,6 +250,7 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 
+			//用户登录成功
 			if (model.getSuccess()) {
 				// 保存用户信息到配置文件
 				SharedPreferences sr = getSharedPreferences("userinfo",
@@ -264,6 +268,15 @@ public class LoginActivity extends Activity {
 				editor.putString("accountset", mAccountset);
 				editor.putBoolean("remember_password", rememberPassword);
 				editor.commit();
+				
+				//设置Jpush的别名
+				JPushInterface.setAlias(LoginActivity.this, mUsername, new TagAliasCallback() {					
+					@Override
+					public void gotResult(int arg0, String arg1, Set<String> arg2) {
+						Log.v("Login", String.valueOf(arg0));						
+					}
+				});
+				
 				Intent intent = new Intent(LoginActivity.this,
 						MainActivity.class);
 				startActivity(intent);

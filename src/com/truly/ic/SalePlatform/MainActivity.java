@@ -1,5 +1,9 @@
 package com.truly.ic.SalePlatform;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
+import com.truly.ic.util.MyUtils;
+
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -9,6 +13,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -19,24 +28,35 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			actionBar = getActionBar();
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}*/
+		
+		BootstrapButton mButton = (BootstrapButton)findViewById(R.id.button_main_AES);
+		mButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				EditText mEditText = (BootstrapEditText)findViewById(R.id.text_main_AES);
+				EditText mResult=(BootstrapEditText)findViewById(R.id.result_main_AES);
+				try {
+					String result=MyUtils.AES.encrypt(mEditText.getText().toString());
+					mResult.setText(result);
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		
 		int id = item.getItemId();
 		if (id == R.id.exit_app) {
 			Intent intent = new Intent(Intent.ACTION_MAIN);
