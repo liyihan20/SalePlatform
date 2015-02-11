@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="fromDateStr">选择起始日期</string>
+    <string name="fromDateNotEmpty">起始日期不能为空</string>
+    <string name="toDateStr">选择结束日期</string>
+    <string name="toDateNotEmpty">结束日期不能为空</string>
+    <string name="toStr">到</string>
+    <string name="dateZoneError">日期期间不正确</string>
+    <string name="billNoStr">订单编号</string>
+
+</resources>

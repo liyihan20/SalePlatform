@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="base_info">基本信息</string>
+    <string name="product_info">产品信息</string>
+    <string name="product_detail_info">产品详细信息</string>
+    <string name="other_info">其它信息</string>
+    <string name="order_date">下单日期:</string>
+    <string name="sys_no">流水号:</string>
+    <string name="order_no">订单编号:</string>
+    <string name="contract_no">合同编号:</string>
+    <string name="buy_unit_name">购货单位:</string>
+    <string name="oversea_client_name">海外客户:</string>
+    <string name="trade_type_name">贸易类型:</string>
+    <string name="trade_rule_name">贸易条例:</string>
+    <string name="clearing_way_name">结算方式:</string>
+    <string name="sale_way_name">销售方式:</string>
+    <string name="currency_exchange">币别/汇率:</string>
+    <string name="order_type_name">订单类型:</string>
+    <string name="product_type_name">产品类型:</string>
+    <string name="product_use">产品用途:</string>
+    <string name="product_dep_name">生产部门:</string>
+    <string name="department_name">办事处/代理:</string>
+    <string name="project_group_name">对应项目组:</string>
+    <string name="charger_name">主管:</string>
+    <string name="user_name">制单者:</string>
+    <string name="product_no">产品编码:</string>
+    <string name="product_name">产品名称:</string>
+    <string name="product_model">产品型号:</string>
+    <string name="qty">数量:</string>
+    <string name="unit_name">单位:</string>
+    <string name="unit_price">单价:</string>
+    <string name="deal_price">成交价:</string>
+    <string name="cost">成本:</string>
+    <string name="aux_tax_price">合同含税单价:</string>
+    <string name="tax_rate">税率%:</string>
+    <string name="fee_rate">费用率%:</string>
+    <string name="commission_rate">佣金率%:</string>
+    <string name="MU">MU:</string>
+    <string name="commission">佣金:</string>
+    <string name="quoto_no">报价编号:</string>
+    <string name="delivery_date">交货日期:</string>
+    <string name="discount_rate">折扣率%:</string>
+    <string name="product_comment">产品规格型号尺寸:</string>
+    <string name="project_name">项目名称:</string>
+    <string name="clerk_name_percent">营业员1/比例:</string>
+    <string name="clerk2_name_percent">营业员2/比例:</string>
+    <string name="delivery_place">交货地点:</string>
+    <string name="description">说明:</string>
+    <string name="salePs">销售比例:</string>
+    <string name="back_paper_confirm_name">回头纸是否确认:</string>
+    <string name="product_way_name">生产方式(冒险做货:</string>
+    <string name="print_truly_name">外包箱带TRULY标示:</string>
+    <string name="client_logo_name">外包箱帶客戶LOGO:</string>
+
+</resources>
