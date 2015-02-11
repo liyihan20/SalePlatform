@@ -9,19 +9,35 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.truly.ic.SalePlatform.R.string;
+
 import android.util.Log;
 
 public class SoapService {
 
+	private String accountset = "";
+	private String userid = "0";
+	private String Tag="SOAP";
+	public SoapService(){}
+	public SoapService(String _accountset,String _userid){
+		this.accountset=_accountset;
+		this.userid=_userid;
+	}
+	
 	public String getSoapStringResult(String methodName,
-			TreeMap<String, String> Args)  throws Exception{
-
-		SoapObject obj = getSoapObject(methodName, Args);
+			TreeMap<String, String> args)  throws Exception{
+		
+		//如果已经登陆，表示有了帐套信息和用户id，那就将这两个参数也设置一下。
+		if(!"0".equals(userid)){
+			args.put("aaa", accountset);
+			args.put("zzz", userid);
+		}
+		Log.v(Tag,accountset+":"+userid);
+		SoapObject obj = getSoapObject(methodName, args);
 		if (obj == null)
 			return null;
-		Log.i("SOAP", obj.getProperty(0).toString());
+		Log.i(Tag, obj.getProperty(0).toString());
 		return obj.getProperty(0).toString();
-
 	}	
 	
 	private SoapObject getSoapObject(String methodName,
@@ -65,13 +81,13 @@ public class SoapService {
 		// 获取返回的数据		
 		if (envelope.bodyIn instanceof SoapFault) {
 			String str = ((SoapFault) envelope.bodyIn).faultstring;	
-			Log.e("SOAP",str);
+			Log.e(Tag,str);
 			return null;
 		} else {
 			// 获取返回的结果
 			// String result = object.getProperty("33").toString();
 			SoapObject obj = (SoapObject) envelope.bodyIn;
-			Log.d("SOAP", obj.toString());
+			Log.d(Tag, obj.toString());
 			return obj;
 		}
 	}

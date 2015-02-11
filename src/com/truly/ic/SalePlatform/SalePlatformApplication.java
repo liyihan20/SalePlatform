@@ -7,6 +7,24 @@ import cn.jpush.android.api.JPushInterface;
 public class SalePlatformApplication extends Application {
 
 	private static final String TAG = "JPush";
+	private String accountset; 
+	private String userid;
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getAccountset() {
+		return accountset;
+	}
+
+	public void setAccountset(String accountset) {
+		this.accountset = accountset;
+	}
 
 	@Override
 	public void onCreate() {

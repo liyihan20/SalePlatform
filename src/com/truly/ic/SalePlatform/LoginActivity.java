@@ -12,13 +12,16 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import cn.jpush.android.api.JPushInterface;
@@ -47,14 +50,15 @@ public class LoginActivity extends Activity {
 	private RadioButton mOptoRadioView;
 	private RadioButton mSemiRadioView;
 	private CheckBox mCheckBoxView;
+	
 	private View mProgressView;
 	private View mLoginFormView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.activity_login);
-
+		
 		// Set up the login form.
 		mOptoRadioView = (RadioButton) findViewById(R.id.opto_radio);
 		mSemiRadioView = (RadioButton) findViewById(R.id.semi_radio);
@@ -269,6 +273,11 @@ public class LoginActivity extends Activity {
 				editor.putBoolean("remember_password", rememberPassword);
 				editor.commit();
 				
+				//设置全局变量
+				final SalePlatformApplication app = (SalePlatformApplication) getApplication();
+				app.setAccountset(mAccountset);
+				app.setUserid(model.getValue());
+				
 				//设置Jpush的别名
 				JPushInterface.setAlias(LoginActivity.this, mUsername, new TagAliasCallback() {					
 					@Override
@@ -290,6 +299,18 @@ public class LoginActivity extends Activity {
 		protected void onCancelled() {
 			mAuthTask = null;
 			showProgress(false);
-		}
+		}		
+	}
+	
+	@Override
+	protected void onResume() {
+		JPushInterface.onResume(getApplicationContext());
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		JPushInterface.onPause(getApplicationContext());
+		super.onPause();
 	}
 }

@@ -20,12 +20,17 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import android.R.integer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Base64;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.truly.ic.SalePlatform.R;
 
@@ -125,7 +130,8 @@ public class MyUtils {
 								// HH:mm:ss格式显示
 		return nowTime;
 	}
-
+	
+	
 	/**
 	 * 检查手机是否有网络连接
 	 * 
@@ -181,6 +187,35 @@ public class MyUtils {
 		alertDialog.show();
 	}
 
+	/**
+	 * 嵌套在ScrollView中的话需要手动根据内容设置ListView的高度
+	 * @param listView
+	 */
+	 public static void setListViewHeightBasedOnChildren(ListView listView) {   
+	        // 获取ListView对应的Adapter   
+	        ListAdapter listAdapter = listView.getAdapter();   
+	        if (listAdapter == null) {   
+	            return;   
+	        }   
+	   
+	        int totalHeight = 0;   
+	        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {   
+	            // listAdapter.getCount()返回数据项的数目   
+	            View listItem = listAdapter.getView(i, null, listView);   
+	            // 计算子项View 的宽高   
+	            listItem.measure(0, 0);
+	            // 统计所有子项的总高度   
+	            totalHeight += listItem.getMeasuredHeight();    
+	        }   
+	   
+	        ViewGroup.LayoutParams params = listView.getLayoutParams();   
+	        params.height = totalHeight+ (listView.getDividerHeight() * (listAdapter.getCount()+1));   
+	        // listView.getDividerHeight()获取子项间分隔符占用的高度   
+	        // params.height最后得到整个ListView完整显示需要的高度   
+	        listView.setLayoutParams(params);   
+	    }   
+	
+	
 	public static class AES {
 
 				
@@ -262,4 +297,6 @@ public class MyUtils {
 			sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
 		}*/
 	}
+
+
 }

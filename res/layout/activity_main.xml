@@ -3,36 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.truly.ic.SalePlatform.MainActivity" >
 
-    <com.beardedhen.androidbootstrap.BootstrapEditText
-        android:id="@+id/text_main_AES"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        bootstrapbutton:be_roundedCorners="true"
-        bootstrapbutton:be_state="success" />
+        android:orientation="horizontal" >
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/text_from_date_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:hint="@string/fromDateStr"
+            bootstrapbutton:be_roundedCorners="true"
+            bootstrapbutton:be_state="success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/toStr" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/text_to_date_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:hint="@string/toDateStr"
+            bootstrapbutton:be_roundedCorners="true"
+            bootstrapbutton:be_state="success" />
+    </LinearLayout>
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
-        android:id="@+id/result_main_AES"
+        android:id="@+id/text_bill_no_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/billNoStr"
         bootstrapbutton:be_roundedCorners="true"
         bootstrapbutton:be_state="success" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/button_main_AES"
+        android:id="@+id/but_search_main_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="@string/action_sign_in"
+        android:text="@string/search"
         bootstrapbutton:bb_roundedCorners="true"
         bootstrapbutton:bb_type="success" />
 

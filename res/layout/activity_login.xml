@@ -98,6 +98,13 @@
                 android:text="@string/action_sign_in"
                 bootstrapbutton:bb_roundedCorners="true"
                 bootstrapbutton:bb_type="success" />
+
+            <!-- <fragment -->
+            <!-- android:id="@+id/fra" -->
+            <!-- android:name="com.truly.ic.SalePlatform.FragmentOrderDetails" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- class="com.truly.ic.SalePlatform.FragmentOrderDetails" /> -->
         </LinearLayout>
     </ScrollView>
 

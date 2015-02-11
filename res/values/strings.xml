@@ -5,5 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="exit_app">退出程序</string>
+    <string name="submit">提交</string>
+    <string name="search">搜索</string>
+    <string name="orderImage">订单图标</string>
+    <string name="title_activity_soorder_detail">订单详情</string>
+    <string name="title_activity_soorder_detail_more">销售订单产品详情</string>
 
 </resources>
